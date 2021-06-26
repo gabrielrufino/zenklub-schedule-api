@@ -1,18 +1,1 @@
-import dotenv from 'dotenv'
-import express from 'express'
-import helmet from 'helmet'
-
-import router from './routers'
-
-dotenv.config()
-
-const app = express()
-
-app.use([
-  helmet()
-])
-app.use('/api', router)
-
-const { PORT } = process.env
-
-app.listen(PORT, () => console.log(`Running at ${PORT}`))
+import './app'
