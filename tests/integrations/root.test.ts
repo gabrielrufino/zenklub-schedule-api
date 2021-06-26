@@ -14,7 +14,6 @@ describe('Testing the root router (/api)', () => {
       .get('/')
       .set('Accept', 'application/json')
       .then(({ body }) => {
-        console.log(body, typeof body)
         expect(body).toEqual({ healthcheck: true })
       })
   })
