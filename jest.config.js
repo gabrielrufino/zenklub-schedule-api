@@ -2,6 +2,6 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: {
-    '^@controllers/(.*)$': '<rootDir>/src/controller/$1',
+    '^@controllers/(.*)$': '<rootDir>/src/controllers/$1',
   },
 }
