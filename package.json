@@ -18,5 +18,8 @@
   "homepage": "https://github.com/gabrielrufino/zenklub-schedule-api#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^27.0.5"
   }
 }
