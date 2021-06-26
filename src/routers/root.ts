@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import controllers from '@controllers/root';
+import controllers from '@controllers/root'
 
 const router = Router()
 
