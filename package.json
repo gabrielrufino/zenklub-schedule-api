@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest ./tests",
-    "dev:start": "nodemon --watch ./src --exec ts-node ./src/index.ts",
+    "dev:start": "nodemon --watch ./src --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "lint": "ts-standard"
   },
   "repository": {
