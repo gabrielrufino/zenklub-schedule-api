@@ -1,10 +1,7 @@
-import dotenv from 'dotenv'
 import express from 'express'
 import helmet from 'helmet'
 
 import router from './routers'
-
-dotenv.config()
 
 const app = express()
 
