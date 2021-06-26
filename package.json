@@ -1,0 +1,19 @@
+{
+  "name": "zenklub-schedule-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielrufino/zenklub-schedule-api.git"
+  },
+  "author": "Gabriel Rufino <contato@gabrielrufino.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrielrufino/zenklub-schedule-api/issues"
+  },
+  "homepage": "https://github.com/gabrielrufino/zenklub-schedule-api#readme"
+}
