@@ -1,1 +1,1 @@
-# zenklub-schedule-api
+# Zenklub Schedule API
