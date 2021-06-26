@@ -1,0 +1,1 @@
+# zenklub-schedule-api
