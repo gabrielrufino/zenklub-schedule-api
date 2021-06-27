@@ -9,8 +9,8 @@ Service to manage the availability and sessions schedule of professionals
 * MongoDB
 * Node >= v14
 * NPM
-* Docker (Optional)
-* docker-compose (Optional)
+* Docker
+* docker-compose
 
 #### Cloning project
 
@@ -33,3 +33,11 @@ Check if the environment variable **MONGO_URL** in the `.env` file matches with 
 ```bash
 npm run dev:start
 ```
+
+#### Service running!
+
+You can now access `http://localhost:5000/`
+
+### API & Docs
+
+You can find docs in the root route `http://localhost:5000/` and all the API routes has the prefix `/api`, like `http://localhost:5000/api/availabilities`.
