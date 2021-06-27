@@ -4,12 +4,39 @@ import Availability from '@models/Availability'
 import controllers from '@controllers/availabilities'
 
 jest.mock('@models/Availability', () => ({
+  find: jest.fn().mockResolvedValue([]),
   create: jest.fn().mockReturnValue({
     _id: '123456789'
   })
 }))
 
 describe('Testing the availabilities controllers', () => {
+  describe('controllers.get', () => {
+    test('Should call the Availability.find method', async () => {
+      const request = {} as Request
+      const response = {} as Response
+      const next = jest.fn() as NextFunction
+
+      await controllers.get(request, response, next);
+
+      expect(Availability.find).toBeCalled()
+    })
+
+    test('Should return the response with the correct status', async () => {
+      const request = {} as Request
+      const response = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn()
+      } as unknown as Response
+      const next = jest.fn() as NextFunction
+
+      await controllers.get(request, response, next);
+
+      expect(response.status).toBeCalledWith(200)
+      expect(response.json).toBeCalledWith([])
+    })
+  })
+
   describe('controllers.post', () => {
     const VALID_AVAILABILITY = {
       professional: 'Scrooge Mcduck',

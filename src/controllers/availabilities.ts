@@ -3,6 +3,15 @@ import { Request, Response, NextFunction } from 'express'
 import Availability from '@models/Availability'
 
 const controllers = {
+  async get (_request: Request, response: Response, next: NextFunction) {
+    try {
+      const availabilities = await Availability.find()
+
+      return response.status(200).json(availabilities)
+    } catch (error) {
+      return next(error)
+    }
+  },
   async post (request: Request, response: Response, next: NextFunction) {
     try {
       const {
