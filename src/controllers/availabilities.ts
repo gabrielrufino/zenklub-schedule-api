@@ -1,5 +1,6 @@
 import { ObjectID } from 'mongodb'
 import { Request, Response, NextFunction } from 'express'
+import dayjs from 'dayjs'
 
 import Availability from '@models/Availability'
 import NotFoundError from '@exceptions/NotFoundError'
@@ -46,7 +47,7 @@ const controllers = {
       return next(error)
     }
   },
-  async getById(request: Request, response: Response, next: NextFunction) {
+  async getById (request: Request, response: Response, next: NextFunction) {
     try {
       const { id } = request.params
 
@@ -108,10 +109,25 @@ const controllers = {
         endTime
       } = request.body
 
+      const startsAt = dayjs(`${startDate} ${startTime}`)
+      const endsAt = dayjs(`${endDate} ${endTime}`)
+
+      const slots = []
+      let iterator = dayjs(startsAt)
+      while (iterator.isBefore(endsAt.subtract(30, 'minute'))) {
+        slots.push({
+          startDate: iterator.format('YYYY-MM-DD'),
+          startTime: iterator.format('HH:mm')
+        })
+
+        iterator = iterator.add(30, 'minute')
+      }
+
       const { _id: id } = await Availability.create({
         professional,
-        startsAt: new Date(`${startDate} ${startTime}`),
-        endsAt: new Date(`${endDate} ${endTime}`)
+        startsAt: new Date(startsAt.toString()),
+        endsAt: new Date(endsAt.toString()),
+        slots
       })
 
       return response.status(201).json({
@@ -120,7 +136,8 @@ const controllers = {
         startDate,
         startTime,
         endDate,
-        endTime
+        endTime,
+        slots
       })
     } catch (error) {
       return next(error)
