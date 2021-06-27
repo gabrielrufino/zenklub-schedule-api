@@ -80,3 +80,50 @@ All sessions have:
 * professional - Name of the professional
 * startDate - Begins date of the availability
 * startTime - Begins time of the availability
+
+#### Database
+
+MongoDB was used to store data and these are the implications:
+
+###### Unique collection
+
+We just need one collection to store the 3 entities. The collection is called *availabilities* and has documents like this one:
+
+```json
+  "_id": "60d903a61f3542933698608c",
+  "professional": "Gabriel Rufino",
+  "startDate": "2021-08-30",
+  "startTime": "12:30",
+  "endDate": "2021-08-30",
+  "endTime": "16:30",
+  "slots": [
+    {
+      "startDate": "2021-08-30",
+      "startTime": "14:00"
+    },
+    {
+      "startDate": "2021-08-30",
+      "startTime": "14:30"
+    },
+    {
+      "startDate": "2021-08-30",
+      "startTime": "15:00"
+    },
+    {
+      "startDate": "2021-08-30",
+      "startTime": "15:30"
+    }
+  ],
+  "sessions": [
+    {
+      "customer": "Lewis Hamilton",
+      "startDate": "2021-08-30",
+      "startTime": "13:00"
+    }
+  ]
+}
+```
+
+###### Aggregation usage
+
+Given the format of dates and time in the database, we need **aggregation framework** to make operations more complex and bring us back a more efficient transformation happening in the server.
