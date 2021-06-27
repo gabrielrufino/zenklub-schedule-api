@@ -1,24 +1,46 @@
 openapi: 3.0.0
 info:
-  title: Sample API
+  title: Zenklub Schedule API
   description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
-  version: 0.1.9
+  version: 1.0.0
 servers:
-  - url: http://api.example.com/v1
+  - url: http://localhost:5000
     description: Optional server description, e.g. Main (production) server
-  - url: http://staging-api.example.com
-    description: Optional server description, e.g. Internal staging server for testing
+components:
+  schemas:
+    Availability:
+      type: object
+      properties:
+        id:
+          type: string
+        professional:
+          type: string
+        startDate:
+          type: string
+        startTime:
+          type: string
+        endDate:
+          type: string
+        endTime:
+          type: string
+      example:
+        id: 60d89a07669ee5d57e5dd8a5
+        professional: Scrooge Mcduck
+        startDate: '2021-07-04'
+        startTime: '15:50'
+        endDate: '2021-07-05'
+        endTime: '12:00'
 paths:
-  /users:
+  /api/availabilities:
     get:
-      summary: Returns a list of users.
+      summary: Returns a list of all availabilities.
       description: Optional extended description in CommonMark or HTML.
       responses:
-        '200':    # status code
+        '200':
           description: A JSON array of user names
           content:
             application/json:
-              schema: 
+              schema:
                 type: array
                 items: 
-                  type: string
+                  $ref: '#/components/schemas/Availability'
