@@ -20,7 +20,7 @@ app.use('/',
       path.join(__dirname, 'docs', 'api.yaml')
     )
   )
-);
+)
 
 const { PORT } = process.env
 

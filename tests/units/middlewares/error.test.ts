@@ -72,7 +72,7 @@ describe('Testing the error middleware', () => {
 
   describe('Unforeseen error', () => {
     class UnforeseenError extends Error {
-      constructor(message: string) {
+      constructor (message: string) {
         super(message)
 
         this.name = 'UnforeseenError'
