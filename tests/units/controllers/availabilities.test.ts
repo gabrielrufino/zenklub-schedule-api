@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
+import { ObjectID } from 'mongodb'
 
 import Availability from '@models/Availability'
+import NotFoundError from '@exceptions/NotFoundError'
 import controllers from '@controllers/availabilities'
 
 jest.mock('@models/Availability', () => ({
@@ -35,6 +37,62 @@ describe('Testing the availabilities controllers', () => {
 
       expect(response.status).toBeCalledWith(200)
       expect(response.json).toBeCalledWith([])
+    })
+  })
+
+  describe('controllers.getById', () => {
+    test('Should call the Availability.aggregate method', async () => {
+      jest.mock('@models/Availability', () => ({
+        aggregate: jest.fn().mockResolvedValue([
+          {
+            professional: 'Scrooge Mcduck',
+            startDate: '2021-06-26',
+            startTime: '12:00',
+            endDate: '2021-06-26',
+            endTime: '15:20'
+          }
+        ]),
+        find: jest.fn().mockResolvedValue([]),
+        create: jest.fn().mockResolvedValue({
+          _id: '123456789'
+        })
+      }))
+      const request = {
+        params: {
+          id: '60d7b5c4e08e01c79e2f7560'
+        }
+      } as unknown as Request
+      const response = {} as Response
+      const next = jest.fn() as NextFunction
+
+      await controllers.getById(request, response, next)
+
+      expect(Availability.aggregate).toBeCalledWith(
+        expect.arrayContaining([{
+          $match: { _id: new ObjectID('60d7b5c4e08e01c79e2f7560') }
+        }])
+      )
+    })
+
+    test('Should call the next function with the correct error when not find the availability', async () => {
+      jest.mock('@models/Availability', () => ({
+        aggregate: jest.fn().mockResolvedValue([]),
+        find: jest.fn().mockResolvedValue([]),
+        create: jest.fn().mockResolvedValue({
+          _id: '123456789'
+        })
+      }))
+      const request = {
+        params: {
+          id: '60d7b5c4e08e01c79e2f7560'
+        }
+      } as unknown as Request
+      const response = {} as Response
+      const next = jest.fn() as NextFunction
+
+      await controllers.getById(request, response, next)
+
+      expect(next).toBeCalledWith(new NotFoundError('Availability'))
     })
   })
 

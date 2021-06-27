@@ -1,6 +1,8 @@
+import { ObjectID } from 'mongodb'
 import { Request, Response, NextFunction } from 'express'
 
 import Availability from '@models/Availability'
+import NotFoundError from '@exceptions/NotFoundError'
 
 const controllers = {
   async get (_request: Request, response: Response, next: NextFunction) {
@@ -40,6 +42,58 @@ const controllers = {
       ])
 
       return response.status(200).json(availabilities)
+    } catch (error) {
+      return next(error)
+    }
+  },
+  async getById(request: Request, response: Response, next: NextFunction) {
+    try {
+      const { id } = request.params
+
+      const [availability] = await Availability.aggregate([
+        {
+          $match: {
+            _id: new ObjectID(id)
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            id: '$_id',
+            professional: 1,
+            startDate: {
+              $dateToString: {
+                date: '$startsAt',
+                format: '%Y-%m-%d'
+              }
+            },
+            startTime: {
+              $dateToString: {
+                date: '$startsAt',
+                format: '%H:%M'
+              }
+            },
+            endDate: {
+              $dateToString: {
+                date: '$endsAt',
+                format: '%Y-%m-%d'
+              }
+            },
+            endTime: {
+              $dateToString: {
+                date: '$endsAt',
+                format: '%H:%M'
+              }
+            }
+          }
+        }
+      ])
+
+      if (!availability) {
+        throw new NotFoundError('Availability')
+      }
+
+      return response.status(200).json(availability)
     } catch (error) {
       return next(error)
     }
