@@ -6,7 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest ./tests",
-    "predev:start": "docker-composee up -d",
+    "predev:start": "docker-compose up -d",
     "dev:start": "nodemon --watch ./src --ext ts,yaml --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "lint": "ts-standard"
   },
