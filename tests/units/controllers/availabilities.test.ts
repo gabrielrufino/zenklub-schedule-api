@@ -18,7 +18,7 @@ describe('Testing the availabilities controllers', () => {
       const response = {} as Response
       const next = jest.fn() as NextFunction
 
-      await controllers.get(request, response, next);
+      await controllers.get(request, response, next)
 
       expect(Availability.find).toBeCalled()
     })
@@ -31,7 +31,7 @@ describe('Testing the availabilities controllers', () => {
       } as unknown as Response
       const next = jest.fn() as NextFunction
 
-      await controllers.get(request, response, next);
+      await controllers.get(request, response, next)
 
       expect(response.status).toBeCalledWith(200)
       expect(response.json).toBeCalledWith([])
