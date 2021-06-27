@@ -13,14 +13,14 @@ jest.mock('@models/Availability', () => ({
 
 describe('Testing the availabilities controllers', () => {
   describe('controllers.get', () => {
-    test('Should call the Availability.find method', async () => {
+    test('Should call the Availability.aggregate method', async () => {
       const request = {} as Request
       const response = {} as Response
       const next = jest.fn() as NextFunction
 
       await controllers.get(request, response, next)
 
-      expect(Availability.find).toBeCalled()
+      expect(Availability.aggregate).toBeCalled()
     })
 
     test('Should return the response with the correct status', async () => {
