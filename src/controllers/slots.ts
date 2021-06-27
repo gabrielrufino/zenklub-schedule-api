@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 import Availability from '@models/Availability'
 
 const controllers = {
-  async get(_request: Request, response: Response, next: NextFunction) {
+  async get (_request: Request, response: Response, next: NextFunction) {
     try {
       const slots = await Availability.aggregate([
         {

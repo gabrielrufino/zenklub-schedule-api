@@ -4,7 +4,7 @@ import Availability from '@models/Availability'
 import controllers from '@controllers/slots'
 
 jest.mock('@models/Availability', () => ({
-  aggregate: jest.fn().mockResolvedValue([]),
+  aggregate: jest.fn().mockResolvedValue([])
 }))
 
 describe('Testing the slots controllers', () => {
