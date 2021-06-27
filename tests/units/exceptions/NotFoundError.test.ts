@@ -3,7 +3,7 @@ import faker from 'faker'
 import NotFoundError from '@exceptions/NotFoundError'
 
 describe('Tests the exception NotFoundError', () => {
-  it ('Should have the correct name', () => {
+  it('Should have the correct name', () => {
     const resource = faker.datatype.string()
     const error = new NotFoundError(resource)
 

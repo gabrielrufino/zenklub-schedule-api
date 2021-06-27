@@ -127,7 +127,33 @@ describe('Testing the availabilities controllers', () => {
       expect(Availability.create).toBeCalledWith({
         professional,
         startsAt: new Date(`${startDate} ${startTime}`),
-        endsAt: new Date(`${endDate} ${endTime}`)
+        endsAt: new Date(`${endDate} ${endTime}`),
+        slots: [
+          {
+            startDate: '2021-06-26',
+            startTime: '12:00'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '12:30'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '13:00'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '13:30'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '14:00'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '14:30'
+          }
+        ]
       })
     })
 
@@ -160,7 +186,33 @@ describe('Testing the availabilities controllers', () => {
         startDate,
         startTime,
         endDate,
-        endTime
+        endTime,
+        slots: [
+          {
+            startDate: '2021-06-26',
+            startTime: '12:00'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '12:30'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '13:00'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '13:30'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '14:00'
+          },
+          {
+            startDate: '2021-06-26',
+            startTime: '14:30'
+          }
+        ]
       })
     })
   })
