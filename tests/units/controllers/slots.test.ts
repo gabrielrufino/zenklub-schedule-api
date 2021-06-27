@@ -10,7 +10,14 @@ jest.mock('@models/Availability', () => ({
 describe('Testing the slots controllers', () => {
   describe('controllers.get', () => {
     test('Should call the Availability.aggregate method', async () => {
-      const request = {} as Request
+      const request = {
+        query: {
+          minimumStartDate: '2021-06-26',
+          minimumStartTime: '12:00',
+          maximumStartDate: '2021-06-26',
+          maximumStartTime: '16:00'
+        }
+      } as unknown as Request
       const response = {} as Response
       const next = jest.fn() as NextFunction
 
@@ -20,7 +27,14 @@ describe('Testing the slots controllers', () => {
     })
 
     test('Should return the response with the correct arguments', async () => {
-      const request = {} as Request
+      const request = {
+        query: {
+          minimumStartDate: '2021-06-26',
+          minimumStartTime: '12:00',
+          maximumStartDate: '2021-06-26',
+          maximumStartTime: '16:00'
+        }
+      } as unknown as Request
       const response = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn()

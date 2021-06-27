@@ -138,8 +138,8 @@ const controllers = {
 
       const { _id: id } = await Availability.create({
         professional,
-        startsAt: new Date(startsAt.toString()),
-        endsAt: new Date(endsAt.toString()),
+        startsAt: startsAt.toDate(),
+        endsAt: endsAt.toDate(),
         slots
       })
 
