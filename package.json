@@ -17,7 +17,8 @@
   "author": "Gabriel Rufino <contato@gabrielrufino.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gabrielrufino/zenklub-schedule-api/issues"
+    "url": "https://github.com/gabrielrufino/zenklub-schedule-api/issues",
+    "email" : "contato@gabrielrufino.com"
   },
   "homepage": "https://github.com/gabrielrufino/zenklub-schedule-api#readme",
   "dependencies": {
