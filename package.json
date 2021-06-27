@@ -1,5 +1,6 @@
 {
   "name": "zenklub-schedule-api",
+  "private": true,
   "version": "1.0.0",
   "description": "Service to manage the availability and sessions schedule of professionals",
   "main": "src/index.ts",
