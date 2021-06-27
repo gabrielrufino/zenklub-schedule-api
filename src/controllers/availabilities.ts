@@ -5,7 +5,39 @@ import Availability from '@models/Availability'
 const controllers = {
   async get (_request: Request, response: Response, next: NextFunction) {
     try {
-      const availabilities = await Availability.find()
+      const availabilities = await Availability.aggregate([
+        {
+          $project: {
+            _id: 0,
+            id: '$_id',
+            professional: 1,
+            startDate: {
+              $dateToString: {
+                date: '$startsAt',
+                format: '%Y-%m-%d'
+              }
+            },
+            startTime: {
+              $dateToString: {
+                date: '$startsAt',
+                format: '%H:%M'
+              }
+            },
+            endDate: {
+              $dateToString: {
+                date: '$endsAt',
+                format: '%Y-%m-%d'
+              }
+            },
+            endTime: {
+              $dateToString: {
+                date: '$endsAt',
+                format: '%H:%M'
+              }
+            }
+          }
+        }
+      ])
 
       return response.status(200).json(availabilities)
     } catch (error) {

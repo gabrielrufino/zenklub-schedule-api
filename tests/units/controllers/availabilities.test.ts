@@ -4,6 +4,7 @@ import Availability from '@models/Availability'
 import controllers from '@controllers/availabilities'
 
 jest.mock('@models/Availability', () => ({
+  aggregate: jest.fn().mockResolvedValue([]),
   find: jest.fn().mockResolvedValue([]),
   create: jest.fn().mockResolvedValue({
     _id: '123456789'
