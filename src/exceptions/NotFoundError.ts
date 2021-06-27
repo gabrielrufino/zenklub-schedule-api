@@ -1,8 +1,7 @@
 class NotFoundError extends Error {
   constructor (resource: string) {
-    super(resource)
+    super(`${resource} not found`)
 
-    this.message = `${resource} not found`
     this.name = 'NotFoundError'
   }
 }

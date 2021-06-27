@@ -1,9 +1,8 @@
 class ConflictError extends Error {
   constructor (resource: string) {
-    super()
+    super(`${resource} in conflict with another`)
 
     this.name = 'ConflictError'
-    this.message = `${resource} in conflict with another`
   }
 }
 
