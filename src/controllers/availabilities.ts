@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 
 import Availability from '@models/Availability'
 import NotFoundError from '@exceptions/NotFoundError'
+import ConflictError from '@exceptions/ConflictError'
 
 const controllers = {
   async get (_request: Request, response: Response, next: NextFunction) {
@@ -111,6 +112,17 @@ const controllers = {
 
       const startsAt = dayjs(`${startDate} ${startTime}`)
       const endsAt = dayjs(`${endDate} ${endTime}`)
+
+      const conflict = await Availability.countDocuments({
+        professional,
+        $or: [
+          { startsAt: { $lt: endsAt } },
+          { endsAt: { $gt: startsAt } }
+        ]
+      })
+      if (conflict) {
+        throw new ConflictError('Availability')
+      }
 
       const slots = []
       let iterator = dayjs(startsAt)

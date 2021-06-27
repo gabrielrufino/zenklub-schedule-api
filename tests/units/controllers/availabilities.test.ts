@@ -8,6 +8,7 @@ import controllers from '@controllers/availabilities'
 jest.mock('@models/Availability', () => ({
   aggregate: jest.fn().mockResolvedValue([]),
   find: jest.fn().mockResolvedValue([]),
+  countDocuments: jest.fn().mockResolvedValue(0),
   create: jest.fn().mockResolvedValue({
     _id: '123456789'
   })
