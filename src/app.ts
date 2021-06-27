@@ -22,6 +22,6 @@ app.use('/',
   )
 )
 
-const { PORT } = process.env
+const { PORT = '5000' } = process.env
 
 app.listen(PORT, () => console.log(`Running at ${PORT}`))
