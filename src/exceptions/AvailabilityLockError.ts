@@ -1,5 +1,5 @@
 class AvailabilityLockError extends Error {
-  constructor() {
+  constructor () {
     super('Availability has scheduled sessions')
 
     this.name = 'AvailabilityLockError'

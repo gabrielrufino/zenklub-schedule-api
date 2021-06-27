@@ -16,13 +16,13 @@ describe('Testing the availability routers (/api/availabilities*)', () => {
   afterEach(async () => {
     const client = new MongoClient(MONGO_URL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     })
-    await client.connect();
+    await client.connect()
     const database = client.db(MONGO_DATABASE_NAME)
 
     await database.collection('availabilities').deleteMany({})
-    await client.close();
+    await client.close()
   })
 
   describe('POST /api/availabilities', () => {
@@ -73,9 +73,9 @@ describe('Testing the availability routers (/api/availabilities*)', () => {
                 }
               ]
             }
+            )
           )
-        )
-      })
+        })
     })
   })
 })

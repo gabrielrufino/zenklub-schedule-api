@@ -27,7 +27,7 @@ const controllers = {
             startsAt: {
               $dateFromString: {
                 dateString: {
-                  $concat: ['$slots.startDate', ' ', '$slots.startTime'],
+                  $concat: ['$slots.startDate', ' ', '$slots.startTime']
                 },
                 timezone: 'America/Sao_Paulo'
               }

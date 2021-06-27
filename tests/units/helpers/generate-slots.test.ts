@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-import generateSlots from '@helpers/generate-slots';
+import generateSlots from '@helpers/generate-slots'
 
 describe('Testing the helper generateSlots', () => {
   test('Should throw an error if receives startsAt after endsAt', () => {
@@ -29,7 +29,7 @@ describe('Testing the helper generateSlots', () => {
           startTime: '15:30'
         }
       ]
-    
+
     )
   })
 })
