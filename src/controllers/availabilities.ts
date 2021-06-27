@@ -13,13 +13,11 @@ const controllers = {
         endTime
       } = request.body
 
-      const a = await Availability.create({
+      const { _id: id } = await Availability.create({
         professional,
         startsAt: new Date(`${startDate} ${startTime}`),
         endsAt: new Date(`${endDate} ${endTime}`)
       })
-
-      const { _id: id } = a
 
       return response.status(201).json({
         id,
