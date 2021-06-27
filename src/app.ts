@@ -1,5 +1,8 @@
 import express from 'express'
 import helmet from 'helmet'
+import path from 'path'
+import swaggerUI from 'swagger-ui-express'
+import { load } from 'yamljs'
 
 import router from './routers'
 
@@ -10,6 +13,14 @@ app.use([
   express.json()
 ])
 app.use('/api', router)
+app.use('/',
+  swaggerUI.serve,
+  swaggerUI.setup(
+    load(
+      path.join(__dirname, 'docs', 'api.yaml')
+    )
+  )
+);
 
 const { PORT } = process.env
 
