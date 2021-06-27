@@ -5,7 +5,7 @@ import controllers from '@controllers/availabilities'
 
 jest.mock('@models/Availability', () => ({
   find: jest.fn().mockResolvedValue([]),
-  create: jest.fn().mockReturnValue({
+  create: jest.fn().mockResolvedValue({
     _id: '123456789'
   })
 }))
@@ -52,10 +52,7 @@ describe('Testing the availabilities controllers', () => {
           ...VALID_AVAILABILITY
         }
       } as Request
-      const response = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn()
-      } as unknown as Response
+      const response = {} as Response
       const next = jest.fn() as NextFunction
 
       await controllers.post(request, response, next)
