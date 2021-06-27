@@ -127,3 +127,51 @@ We just need one collection to store the 3 entities. The collection is called *a
 ###### Aggregation usage
 
 Given the format of dates and time in the database, we need **aggregation framework** to make operations more complex and bring us back a more efficient transformation happening in the server.
+
+#### Source layers
+
+```
++-- src
+|  +-- controllers
+|  +-- docs
+|  +-- exceptions
+|  +-- helpers
+|  +-- middlewares
+|  +-- models
+|  +-- routers
+|  +-- setup
++-- app.ts
++-- index.ts
+```
+
+###### Controllers
+
+Contains all HTTP handlers
+
+###### Docs
+
+Contains documentation made in swagger specification
+
+###### Exceptions
+
+Contains custom errors
+
+###### Helpers
+
+Contains functions to make our life easier
+
+###### Middlewares
+
+Contains HTTP middlewares for handling intermidate goals
+
+###### Models
+
+Contains the database models
+
+###### Routers
+
+Contains declarative files defining the routers and their middlewares & handlers
+
+###### Setup
+
+Contains the initialization setup
