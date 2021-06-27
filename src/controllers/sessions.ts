@@ -32,6 +32,7 @@ const controllers = {
         startTime
       }
 
+      const previousSlot = dayjs(`${startDate} ${startTime}`).subtract(30, 'minute')
       const nextSlotAt = dayjs(`${startDate} ${startTime}`).add(30, 'minute')
 
       await Availability.updateOne(
@@ -41,6 +42,10 @@ const controllers = {
           $pull: {
             slots: {
               $or: [
+                {
+                  startDate: previousSlot.format('YYYY-MM-DD'),
+                  startTime: previousSlot.format('HH:mm')
+                },
                 {
                   startDate,
                   startTime
