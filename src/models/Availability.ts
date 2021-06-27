@@ -14,6 +14,10 @@ const availabilitySchema = new Schema({
     type: Date,
     required: true
   },
+  slots: {
+    type: Array,
+    default: []
+  },
   sessions: {
     type: Array,
     default: []
