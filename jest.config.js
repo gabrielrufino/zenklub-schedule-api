@@ -4,6 +4,7 @@ module.exports = {
   moduleNameMapper: {
     '^@controllers/(.*)$': '<rootDir>/src/controllers/$1',
     '^@exceptions/(.*)$': '<rootDir>/src/exceptions/$1',
+    '^@helpers/(.*)$': '<rootDir>/src/helpers/$1',
     '^@middlewares/(.*)$': '<rootDir>/src/middlewares/$1',
     '^@models/(.*)$': '<rootDir>/src/models/$1'
   }
