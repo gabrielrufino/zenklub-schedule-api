@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import Availability from '@models/Availability'
 import NotFoundError from '@exceptions/NotFoundError'
 import ConflictError from '@exceptions/ConflictError'
+import AvailabilityLockError from '@exceptions/AvailabilityLockError'
 
 const controllers = {
   async get (_request: Request, response: Response, next: NextFunction) {
@@ -153,6 +154,26 @@ const controllers = {
       })
     } catch (error) {
       return next(error)
+    }
+  },
+  async deleteById (request: Request, response: Response, next: NextFunction) {
+    try {
+      const { id } = request.params
+
+      const availability = await Availability.findById(id)
+      if (!availability) {
+        throw new NotFoundError('Availability')
+      }
+
+      if (availability.sessions.length) {
+        throw new AvailabilityLockError()
+      }
+
+      await Availability.deleteOne({ _id: new ObjectID(id) })
+
+      return response.status(204).send()
+    } catch (error) {
+      next(error)
     }
   }
 }

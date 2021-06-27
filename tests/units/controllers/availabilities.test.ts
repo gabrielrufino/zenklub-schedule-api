@@ -8,7 +8,9 @@ import controllers from '@controllers/availabilities'
 jest.mock('@models/Availability', () => ({
   aggregate: jest.fn().mockResolvedValue([]),
   find: jest.fn().mockResolvedValue([]),
+  findById: jest.fn().mockResolvedValue({ sessions: [] }),
   countDocuments: jest.fn().mockResolvedValue(0),
+  deleteOne: jest.fn().mockResolvedValue({}),
   create: jest.fn().mockResolvedValue({
     _id: '123456789'
   })
@@ -215,6 +217,36 @@ describe('Testing the availabilities controllers', () => {
           }
         ]
       })
+    })
+  })
+
+  describe('controllers.deleteById', () => {
+    test('Should call the Availability.findById method', async () => {
+      const request = {
+        params: {
+          id: '60d7b5c4e08e01c79e2f7560'
+        }
+      } as unknown as Request
+      const response = {} as Response
+      const next = jest.fn() as NextFunction
+
+      await controllers.deleteById(request, response, next)
+
+      expect(Availability.findById).toBeCalledWith(request.params.id)
+    })
+
+    test('Should call the Availability.deleteOne method', async () => {
+      const request = {
+        params: {
+          id: '60d7b5c4e08e01c79e2f7560'
+        }
+      } as unknown as Request
+      const response = {} as Response
+      const next = jest.fn() as NextFunction
+
+      await controllers.deleteById(request, response, next)
+
+      expect(Availability.deleteOne).toBeCalledWith({ _id: new ObjectID(request.params.id) })
     })
   })
 })
