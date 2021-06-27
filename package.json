@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.12.0",
     "helmet": "^4.6.0",
+    "mongodb": "^3.6.9",
     "mongoose": "^5.12.15",
     "swagger-ui-express": "^4.1.6",
     "yamljs": "^0.3.0"
