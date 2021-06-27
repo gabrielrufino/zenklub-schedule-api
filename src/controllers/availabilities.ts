@@ -6,6 +6,7 @@ import Availability from '@models/Availability'
 import NotFoundError from '@exceptions/NotFoundError'
 import ConflictError from '@exceptions/ConflictError'
 import AvailabilityLockError from '@exceptions/AvailabilityLockError'
+import generateSlots from '@helpers/generate-slots'
 
 const controllers = {
   async get (_request: Request, response: Response, next: NextFunction) {
@@ -125,16 +126,7 @@ const controllers = {
         throw new ConflictError('Availability')
       }
 
-      const slots = []
-      let iterator = dayjs(startsAt)
-      while (iterator.isBefore(endsAt.subtract(30, 'minute'))) {
-        slots.push({
-          startDate: iterator.format('YYYY-MM-DD'),
-          startTime: iterator.format('HH:mm')
-        })
-
-        iterator = iterator.add(30, 'minute')
-      }
+      const slots = generateSlots(startsAt, endsAt)
 
       const { _id: id } = await Availability.create({
         professional,
