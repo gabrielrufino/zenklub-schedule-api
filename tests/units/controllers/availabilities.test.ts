@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 
+import Availability from '@models/Availability'
+import controllers from '@controllers/availabilities'
+
 jest.mock('@models/Availability', () => ({
   create: jest.fn().mockReturnValue({
     _id: '123456789'
   })
 }))
-
-import Availability from '@models/Availability'
-import controllers from '@controllers/availabilities'
 
 describe('Testing the availabilities controllers', () => {
   describe('controllers.post', () => {
@@ -77,7 +77,7 @@ describe('Testing the availabilities controllers', () => {
         startDate,
         startTime,
         endDate,
-        endTime,
+        endTime
       })
     })
   })
