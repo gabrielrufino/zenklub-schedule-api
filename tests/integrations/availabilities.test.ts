@@ -22,6 +22,7 @@ describe('Testing the availability routers (/api/availabilities*)', () => {
     const database = client.db(MONGO_DATABASE_NAME)
 
     await database.collection('availabilities').deleteMany({})
+    await client.close();
   })
 
   describe('POST /api/availabilities', () => {
