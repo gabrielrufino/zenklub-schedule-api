@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
   build:
@@ -29,6 +29,5 @@ jobs:
     - run: npm run build --if-present
     - run: cp .env.example .env
     - run: npm run dev:start &
-    - run: npm i -g wait-on
-    - run: wait-on http://localhost:5000/api
+    - run: npx wait-on http://localhost:5000/api
     - run: npm test
