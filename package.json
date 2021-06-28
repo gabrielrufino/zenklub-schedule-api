@@ -7,6 +7,7 @@
   "scripts": {
     "test": "jest ./tests",
     "test:units": "jest ./tests/units",
+    "test:integrations": "jest ./tests/integrations",
     "build": "tsc --project tsconfig.json && cp -R ./src/docs ./build/docs",
     "start": "node -r ts-node/register -r tsconfig-paths/register ./build/index.js",
     "predev:start": "docker-compose up -d",
