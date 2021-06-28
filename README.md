@@ -23,7 +23,7 @@ cd zenklub-schedule-api
 
 ```bash
 npm install
-cp .env.example
+cp .env.example .env
 ```
 
 Check if the environment variable **MONGO_URL** in the `.env` file matches with you MongoDB server.
