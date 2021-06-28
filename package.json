@@ -6,8 +6,8 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest ./tests",
-    "build": "tsc --project tsconfig.json",
-    "start": "node -r tsconfig-paths/register ./build/index.js",
+    "build": "tsc --project tsconfig.json && cp -R ./src/docs ./build/docs",
+    "start": "node -r ts-node/register -r tsconfig-paths/register ./build/index.js",
     "predev:start": "docker-compose up -d",
     "dev:start": "nodemon --watch ./src --ext ts,yaml --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "lint": "ts-standard"
