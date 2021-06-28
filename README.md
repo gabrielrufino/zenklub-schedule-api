@@ -42,6 +42,28 @@ You can now access `http://localhost:5000/`
 
 You can find docs in the root route `http://localhost:5000/` and all the API routes has the prefix `/api`, like `http://localhost:5000/api/availabilities`.
 
+### Tests
+
+We've unit tests and integration tests.
+
+To run only unit tests, execute the command below:
+
+```bash
+npm run test:units
+```
+
+To run only integration tests, ensure you service and database is running, and execute the command below:
+
+```bash
+npm run test:integrations
+```
+
+To run all the tests, execute the command below:
+
+```bash
+npm test
+```
+
 ### Architecture
 
 #### Entities
