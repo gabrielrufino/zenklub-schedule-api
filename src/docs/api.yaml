@@ -30,6 +30,25 @@ components:
         startTime: '15:50'
         endDate: '2021-07-05'
         endTime: '12:00'
+    AvailabilityWithoutId:
+      type: object
+      properties:
+        professional:
+          type: string
+        startDate:
+          type: string
+        startTime:
+          type: string
+        endDate:
+          type: string
+        endTime:
+          type: string
+      example:
+        professional: Scrooge Mcduck
+        startDate: '2021-07-04'
+        startTime: '15:50'
+        endDate: '2021-07-05'
+        endTime: '12:00'
     Slot:
       type: object
       properties:
@@ -94,6 +113,12 @@ paths:
         - Availabilities
       summary: Creates a new availability.
       description: Optional extended description in CommonMark or HTML.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailabilityWithoutId'
       responses:
         '201':
           description: A JSON object of the new availability
@@ -101,6 +126,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Availability'
+        '400':
+          description: Validation error
         '409':
           description: Conflict between availabilities
           content:
@@ -152,6 +179,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Availability'
+        '400':
+          description: Validation error
         '404':
           description: The availability was not found
           content:
@@ -222,6 +251,8 @@ paths:
                 type: array
                 items: 
                   $ref: '#/components/schemas/Slot'
+        '400':
+          description: Validation error
         '500':
           description: Internal server error
           content:
@@ -233,6 +264,14 @@ paths:
       tags:
         - Sessions
       responses:
+        '201':
+          description: A JSON object of the new session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '400':
+          description: Validation error
         '500':
           description: Internal server error
           content:
